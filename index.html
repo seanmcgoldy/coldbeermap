@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W22TN7TG0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W22TN7TG0W');
+</script>
+    <title>Cold Beer Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Discover the Coldest Beer Near You | Cold Beer Map</title>
+    <meta name="description" content="At ColdBeerMap, we believe that the temperature of beer is crucial to the overall experience of enjoying a cold one. The right temperature can enhance the flavors and aromas of a beer, while the wrong temperature can mask or even ruin them. We understand that different beers have different ideal serving temperatures. A crisp lager is best enjoyed ice cold, while a rich stout may benefit from being served slightly warmer. That's why we've made it our mission to help beer lovers find the perfect pint at the perfect temperature. With ColdBeerMap, you'll never have to settle for a lukewarm beer again. Our map guides you to the best spots for a cold beer, so you can enjoy your brew the way it was meant to be enjoyed. Join us in our quest for the perfect pint and raise a glass to the importance of temperature in the beer-drinking experience.">
+    <link href="./bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script>function initMap(){};</script>
+    <script async src="/maps-proxy?libraries=places,visualization&callback=initMap"></script>
+    </script>
+    <script src="/infobubble.js"></script>
+    <script src="./app.js" defer></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script>
+      // Fetch the JSON data and count the total number of elements
+      //fetch("https://sheetdb.io/api/v1/26jtko1crvyzy")
+      fetch("/data.json")
+          .then(response => response.json())
+          .then(data => {
+              const totalCount = data.length * 10;
+              
+              const totalCountElement = document.getElementById("total-count");
+              totalCountElement.textContent = `total spent on beer: $${totalCount}`;
+              const totalCount2 = data.length * 10;
+              const totalCount2Element = document.getElementById("total-count2");
+              totalCount2Element.textContent = `total spent on beer: $${totalCount2}`;
+          })
+          .catch(error => {
+              console.error("Error fetching JSON data:", error);
+          });
+  </script> 
+         
+      <style>
+      html,
+      body,
+      #map-container {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .opener {
+        display: none;
+      }
+      .overlay {
+        display: block;
+      }
+
+    </style>
+  </head>
+  <body>
+      <nav id="navbar">
+      <div class="navbar-bar-1"></div>
+      <div class="navbar-bar-2"></div>
+      <div class="navbar-bar-3"></div>
+      <ul class="navbar-links">
+        <li><a href="https://coldbeermap.com/"><img src='./img/logo.svg' height="119px" width="114px" ></a></li>
+        <li><a href="data.html">data</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           stuff
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <!-- <a class="dropdown-item" href="manifesto.html">manifesto</a> -->
+            <a class="dropdown-item" href="about.html">about</a>
+            <a class="dropdown-item" href="faq.html">why</a>
+            <a class="dropdown-item" href="subs.html">user submissions</a>
+            <a class="dropdown-item" href="#"><div id="total-count2"></div></a>
+          </div>
+          <li class="navbar-right"><div id="total-count"></li>
+        </li>
+      </ul>
+    </nav>
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <div class="legend15">
+            <button class="filter-button" data-category="all">
+            <div class="legend7">Show All</div>
+            </button>
+        </div>
+          <div class="legend9">  
+            <button class="filter-button" data-category="frostymug">
+            <div class="legend6"><img src='./img/frostymug.svg' height="65px" width="40px"></div>
+            <div class="legend2">Frosty Mugs</div>
+            </button>
+          </div>
+          <div class="legend10">
+            <button class="filter-button" data-category="frozen">
+            <div class="legend1"><img src='./img/frozen.svg' height="80px" width="80px"></div>
+            <div class="legend2">Cold Crown</div>
+            </button>
+          </div>
+          <div class="legend11">
+            <button class="filter-button" data-category="draft1">
+            <div class="legend3"><img src='./img/draft1.svg' height="55px" width="33px"></div></button><div class="legend16">Cold</div>
+          </div>
+          <div class="legend12">
+            <button class="filter-button" data-category="draft2">
+            <div class="legend3"><img src='./img/draft2.svg' height="55px" width="33px"></div></button><div class="legend16">Okay</div>
+          </div>
+          <div class="legend13">
+            <button class="filter-button" data-category="draft3">
+            <div class="legend3"><img src='./img/draft3.svg' height="55px" width="33px"></div></button><div class="legend16">Warm</div>
+          </div>
+          <div class="legend14">
+            <button class="filter-button" data-category="heater">
+            <div class="legend5"><img src='./img/heater.svg' height="80px" width="80px"></div>
+            <div class="legend2">Heater</div>
+        
+            </button>
+          </div>
+        </div>
+    </div>
+    
+
+
+    <div class="searcher"><input id="search-box" type="text" placeholder="searching for something?"></div>
+   <div class="resetter-container">
+      <div class="resetter">
+        <button id="reset-button"><img src="./img/loc.png"><span>NYC</span></button>
+      </div>
+    </div> 
+ 
+    
+    <div class="insta"><a href="https://www.instagram.com/coldbeermap/" target="_blank"><img src='./img/insta.png' height='20px' width='20px'></a></div>
+    <div id="map-container" class="z-depth-1-half map-container"></div>
+    <span class='opener' onclick="openNav()"> +Filters </span>
+    <script>
+const opener = document.querySelector('.opener');
+const overlay = document.querySelector('.overlay');
+
+function openNav() {
+  document.getElementById("myNav").style.width = "125px";
+  overlay.style.display = "block";
+  opener.style.display = "none";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+  overlay.style.display = "none";
+  opener.style.display = "block";
+}
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
