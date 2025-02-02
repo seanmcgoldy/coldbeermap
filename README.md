@@ -1,6 +1,7 @@
 # Cold Beer Map
 
 https://coldbeermap.com/
+
 Welcome to the Cold Beer Map project repository! This project aims to help beer enthusiasts find the nearest locations serving cold, refreshing beer. This project was originially designed to explore the Google Maps Cloud Platform and deliver a free info tool that was visually appealing a simple to use.
 
 Technologies Used:
